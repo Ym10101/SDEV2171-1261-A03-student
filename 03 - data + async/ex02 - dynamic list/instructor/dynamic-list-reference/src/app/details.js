@@ -76,14 +76,22 @@ export default function DetailsScreen() {
         ) : (
           <View style={styles.listCard}>
             <Text style={styles.listLabel}>Current study list</Text>
-            <FlatList
+            {studySteps.map((step) => <Text key={step.id}>- {step.label}</Text>)}
+            
+            {/* Note what we 'lose' in this comparison:
+            - convenient application of styles
+            - easy separator
+            - performance-wise, optimisations for larger data series & lazy loading
+            - many more things (see docs): https://reactnative.dev/docs/flatlist */}
+
+            {/* <FlatList
               data={studySteps}
               keyExtractor={(item) => item.id}
               renderItem={renderStep}
               ItemSeparatorComponent={() => <View style={styles.separator} />}
               style={styles.list}
               contentContainerStyle={styles.listContent}
-            />
+            /> */}
           </View>
         )}
 
