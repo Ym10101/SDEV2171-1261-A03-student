@@ -76,7 +76,20 @@ export default function DetailsScreen() {
         ) : (
           <View style={styles.listCard}>
             <Text style={styles.listLabel}>Current study list</Text>
-            {studySteps.map((step) => <Text key={step.id}>- {step.label}</Text>)}
+
+            {
+              <FlatList
+                data={studySteps}
+                keyExtractor={(item) => item.id}
+                renderItem={
+                  ({ item, index }) => {<View style={styles.stepRow}>
+                    <Text style={styles.stepIndex}>{index + 1}.</Text>
+                    <Text style={styles.stepLabel}>{item.label}</Text>
+                  </View>}
+                }
+              />
+            }
+            {/* ^ swap to FlatList; output is getting kind of unreadable */}
             
             {/* Note what we 'lose' in this comparison:
             - convenient application of styles
